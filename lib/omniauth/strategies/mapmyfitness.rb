@@ -6,9 +6,12 @@ module OmniAuth
       option :name, "mapmyfitness"
 
       option :client_options, {
-        :site => "https://oauth2-api.mapmyapi.com/v7.0",
-        :authorize_url => "https://www.mapmyfitness.com/v7.0/oauth2/authorize/",
-        :token_url => "https://www.mapmyfitness.com/v7.0/oauth2/uacf/access_token",
+        :site => ENV.fetch('MMF_API_BASE',
+        "https://oauth2-api.mapmyapi.com/v7.0"),
+        :authorize_url => ENV.fetch('MMF_API_AUTH',
+        "https://www.mapmyfitness.com/v7.0/oauth2/authorize/"),
+        :token_url => ENV.fetch('MMF_API_TOKEN',
+        "https://www.mapmyfitness.com/v7.0/oauth2/uacf/access_token"),
         :connection_opts => {
           :headers => {'Api-Key' => ENV['MMF_API_KEY']}
         }
